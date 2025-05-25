@@ -1,7 +1,7 @@
 ## Criando enviornment do conda
 ```
-conda create --name mario_train python=3.11
-conda activate mario_train
+conda create --name vglc_train python=3.11
+conda activate vglc_train
 pip install -r requirements.txt
 ```
 
