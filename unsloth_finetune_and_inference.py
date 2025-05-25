@@ -184,9 +184,9 @@ for current_split in splits_to_run:
                                 trainer.train()
                                 print(f"Training finished for run: {run_name}")
 
-                                model.save_pretrained(save_model_name)
-                                tokenizer.save_pretrained(save_model_name)
-                                print(f"Model saved to {save_model_name}")
+                                # model.save_pretrained(save_model_name)
+                                # tokenizer.save_pretrained(save_model_name)
+                                # print(f"Model saved to {save_model_name}")
                                 success = True
 
                                 run_data = {

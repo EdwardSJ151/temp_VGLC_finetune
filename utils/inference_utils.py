@@ -99,7 +99,7 @@ def generate_with_model(model, tokenizer, prompt, model_type, temperature=0.7):
         )
         outputs = model.generate(
             **tokenizer([text], return_tensors = "pt").to("cuda"),
-            max_new_tokens = 4096,
+            max_new_tokens = 1024,
             temperature = temperature, top_p = 0.95, top_k = 64,
         )
 
@@ -117,7 +117,7 @@ def generate_with_model(model, tokenizer, prompt, model_type, temperature=0.7):
 
         outputs = model.generate(
             **tokenizer(text, return_tensors = "pt").to("cuda"),
-            max_new_tokens = 4096,
+            max_new_tokens = 1024,
             temperature = temperature, top_p = 0.8, top_k = 20,
             streamer = TextStreamer(tokenizer, skip_prompt = True),
         )
@@ -134,7 +134,7 @@ def generate_with_model(model, tokenizer, prompt, model_type, temperature=0.7):
         ).to("cuda")
 
 
-        outputs = model.generate(input_ids = inputs, max_new_tokens = 4096, use_cache = True,
+        outputs = model.generate(input_ids = inputs, max_new_tokens = 1024, use_cache = True,
                                  temperature = temperature, min_p = 0.1)
 
 
