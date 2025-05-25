@@ -1,0 +1,10 @@
+.env
+**/__pycache__/**
+
+unsloth_training_checkpoints
+unsloth_compiled_cache
+training_log.json
+wandb
+batch_saved_models*
+inference_results
+batch_outputs

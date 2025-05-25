@@ -1,0 +1,20 @@
+wandb_settings:
+  entity: "edwardsj_151"
+  project: "rainbow_island_finetuning_grid_search"
+
+dataset_config:
+  hf_path: "EdwardSJ151/rainbow_island"
+  splits_to_run:
+    - str_horizontal_newline
+    - str_vertical_newline
+
+gemma3:
+  models:
+    - unsloth/gemma-2-9b-bnb-4bit
+  params:
+    lora_rank_alpha_pairs: [[64, 64], [128, 128]]
+    num_train_epochs: [1]
+    train_on_responses_only: [True]
+  chat_template: "gemma-3"
+  instruction_part: "<start_of_turn>user\n"
+  response_part: "<start_of_turn>model\n"

@@ -1,0 +1,22 @@
+wandb_settings:
+  entity: "edwardsj_151"
+  project: "mario_finetuning_grid_search"
+
+dataset_config:
+  hf_path: "EdwardSJ151/mario-1-2"
+  splits_to_run:
+    - str_horizontal_newline_path
+    - str_horizontal_newline_nopath
+    - str_vertical_newline_path
+    - str_vertical_newline_nopath
+
+gemma3:
+  models:
+    - unsloth/gemma-2-9b-bnb-4bit
+  params:
+    lora_rank_alpha_pairs: [[64, 64], [64, 128], [128, 128]]
+    num_train_epochs: [1]
+    train_on_responses_only: [True]
+  chat_template: "gemma-3"
+  instruction_part: "<start_of_turn>user\n"
+  response_part: "<start_of_turn>model\n"
