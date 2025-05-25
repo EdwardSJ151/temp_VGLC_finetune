@@ -1,6 +1,6 @@
 wandb_settings:
   entity: "edwardsj_151"
-  project: "kid_icarus_finetuning_grid_search"
+  project: "kid_icarus_finetuning_grid_search_dgx"
 
 dataset_config:
   hf_path: "EdwardSJ151/kid_icarus_small"

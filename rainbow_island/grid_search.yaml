@@ -1,6 +1,6 @@
 wandb_settings:
   entity: "edwardsj_151"
-  project: "rainbow_island_finetuning_grid_search"
+  project: "rainbow_island_finetuning_grid_search_dgx"
 
 dataset_config:
   hf_path: "EdwardSJ151/rainbow_island"

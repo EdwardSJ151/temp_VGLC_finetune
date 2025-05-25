@@ -1,6 +1,6 @@
 wandb_settings:
   entity: "edwardsj_151"
-  project: "lode_runner_finetuning_grid_search"
+  project: "lode_runner_finetuning_grid_search_dgx"
 
 dataset_config:
   hf_path: "EdwardSJ151/lode_runner"
