@@ -1,0 +1,23 @@
+wandb_settings:
+  entity: "edwardsj_151"
+  project: "kid_icarus_finetuning_grid_search_dgx"
+
+dataset_config:
+  hf_path: "EdwardSJ151/kid_icarus_small"
+  splits_to_run:
+    - str_horizontal_newline_path
+    - str_horizontal_newline_nopath
+    - str_vertical_newline_path
+    - str_vertical_newline_nopath
+
+
+llama3:
+  models:
+    - unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit
+  params:
+    lora_rank_alpha_pairs: [[64, 64], [64, 128], [128, 128]]
+    num_train_epochs: [1, 2]
+    train_on_responses_only: [True]
+  chat_template: "llama-3.1"
+  instruction_part: "<|start_header_id|>user<|end_header_id|>\n\n"
+  response_part: "<|start_header_id|>assistant<|end_header_id|>\n\n"
