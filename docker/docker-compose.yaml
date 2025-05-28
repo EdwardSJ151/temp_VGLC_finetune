@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  mario-unsloth:
+    container_name: mario-unsloth-jupyter
+    image: mario_llm:unsloth_jupyter
+    command: >
+      jupyter-lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+    network_mode: "host"
+    runtime: nvidia
+    volumes:
+      - ../:/mario_llm
+    working_dir: /mario_llm
