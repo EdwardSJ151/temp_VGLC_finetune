@@ -3,10 +3,10 @@
 PYTHON_SCRIPT="unsloth_finetune_and_inference.py"
 
 CONFIG_FILES_RAINBOW_ISLAND=(
-    "mario/grid_search.qwen2.5.yaml"
-    "mario/grid_search_qwen3.yaml"
-    "mario/grid_search_llama.yaml"
-    "mario/grid_search_gemma.yaml"
+    "rainbow_island/grid_search.qwen2.5.yaml"
+    "rainbow_island/grid_search_qwen3.yaml"
+    "rainbow_island/grid_search_llama.yaml"
+    "rainbow_island/grid_search_gemma.yaml"
 )
 
 ALL_CONFIG_FILES=("${CONFIG_FILES_RAINBOW_ISLAND[@]}")
