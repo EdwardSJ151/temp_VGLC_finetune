@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 # Define base tile directory
-p_t = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+p_t = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 TILE_DIR = os.path.join(p_t, "assets")
 
 def get_chars2pngs(game_type):

@@ -11,3 +11,4 @@ batch_outputs
 inference_yaml
 unsloth_finetune_and_inference_old.py
 unsloth_finetune_old.py
+playability/*.txt
