@@ -28,38 +28,54 @@ def load_kid_icarus_config(config_filename="KI.json"):
         raise
 
 def check_kid_icarus_playability(original_level_lines, platformer_config=None):
-    """Checks if a Kid Icarus level is playable by finding paths."""
     if platformer_config is None:
-        try:
-            platformer_config = load_kid_icarus_config()
-        except Exception:
-            print("Failed to auto-load Kid Icarus config for playability check.")
-            return False # Config is essential
-
-    if not platformer_config:
-        print("Kid Icarus platformer_config not available for playability check.")
-        return False
+        platformer_config = load_kid_icarus_config()
         
     try:
-        # Ensure original_level_lines is a list of strings
         if isinstance(original_level_lines, str):
             original_level_lines = original_level_lines.split('\n')
 
         paths = kid_icarus_pathing_code.findPaths(
-            1, # agent_id, seems to be hardcoded in original example
+            1,
             platformer_config['solid'],
             platformer_config['passable'],
             platformer_config['jumps'],
             original_level_lines
         )
-        return bool(paths) # True if paths list is not empty
-    except Exception as e:
-        print(f"Exception during Kid Icarus playability check: {e}")
-        return False
-# --- End of functions for metrics_batch.py ---
+        if not paths:
+            return False
 
-# Original helper functions (get_all_reachable_cells, etc.) remain here
-# These are not directly used by check_kid_icarus_playability but are part of the original script
+        modified_level_chars = [list(line_str) for line_str in original_level_lines]
+        last_path = paths[-1]
+        for x, y in last_path:
+            if 0 <= y < len(modified_level_chars) and 0 <= x < len(modified_level_chars[y]):
+                modified_level_chars[y][x] = 'P'
+
+
+        path_marked_level_lines = ["".join(line_list) for line_list in modified_level_chars]
+        
+
+        filled_level_lines = fill_inaccessible_areas(
+            original_grid_map=path_marked_level_lines,
+            start_char='P',
+            solid_chars=platformer_config.get('solid', ['#', 'H']),
+            fill_char='#'
+        )
+        
+        standable_chars_for_check = platformer_config.get('standable_for_check', ['#', 'T', 'M'])
+        is_valid_according_to_logic = can_find_standable_platform_above_topmost_start(
+            grid_map=filled_level_lines,
+            start_char='P',
+            standable_chars=standable_chars_for_check
+        )
+        
+        return not is_valid_according_to_logic # De proposito, se tem plataforma acima, o level nao e valido
+
+    except Exception as e:
+        print(f"Exception during Kid Icarus detailed playability check: {e}")
+        return False
+
+
 def get_all_reachable_cells(grid_map, start_char='M', solid_chars=['#', 'H'], allow_wrap=True):
     if not grid_map or not grid_map[0]:
         return set()
