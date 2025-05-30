@@ -131,6 +131,10 @@ mario_game_config = load_mario_config()
 kid_icarus_game_config = load_kid_icarus_config()
 
 def main(input_json_paths_arg):
+    output_dir = "metric_results"
+    os.makedirs(output_dir, exist_ok=True)
+    error_log = {"empty_input_json_files": []}
+
     file_groups = {}
     print("\nPre-processing files to group them by game type and path flag...")
     for input_json_path in input_json_paths_arg:
@@ -138,7 +142,11 @@ def main(input_json_paths_arg):
         levels_data = load_json_data(input_json_path)
     
         if not levels_data:
-            print(f"Warning: No data found in {input_json_path}. Skipping for grouping.")
+            warning_msg_empty = f"Warning: Input JSON file {input_json_path} contains an empty list. Skipping for grouping."
+            print(warning_msg_empty)
+            if input_json_path not in error_log["empty_input_json_files"]:
+                    error_log["empty_input_json_files"].append(input_json_path)
+            print(warning_msg_empty)
             continue
 
         if not isinstance(levels_data, list) or not levels_data: # Ensure levels_data is a non-empty list
