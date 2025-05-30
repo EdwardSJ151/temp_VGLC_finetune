@@ -220,10 +220,14 @@ def main(input_json_paths_arg):
                     
                     torch.cuda.empty_cache() 
 
-            output_json = f"with_similarity_{os.path.basename(input_json_path)}"
-            with open(output_json, "w") as f:
+            output_dir = "metric_results"
+            os.makedirs(output_dir, exist_ok=True)
+            output_filename = f"with_similarity_{os.path.basename(input_json_path)}"
+            output_json_path = os.path.join(output_dir, output_filename)
+
+            with open(output_json_path, "w") as f:
                 json.dump(processed_levels, f, indent=2)
-            print(f"Results saved to {output_json}")
+            print(f"Results saved to {output_json_path}")
 
 
         print(f"Finished processing group: Game Type = {current_game_type}, Path Flag = {current_path_flag}. Releasing index.")
