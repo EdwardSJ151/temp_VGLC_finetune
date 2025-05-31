@@ -6,7 +6,6 @@ dataset_config:
   hf_path: "EdwardSJ151/rainbow_island"
   splits_to_run:
     - str_horizontal_newline
-    - str_vertical_newline
 
 gemma3:
   models:

@@ -6,15 +6,12 @@ dataset_config:
   hf_path: "EdwardSJ151/rainbow_island"
   splits_to_run:
     - str_horizontal_newline
-    - str_vertical_newline
 
 qwen2.5:
   models:
-    - unsloth/Qwen2.5-14B-Instruct-bnb-4bit
     - unsloth/Qwen2.5-7B-Instruct-bnb-4bit
-    - unsloth/Qwen2.5-3B-Instruct-bnb-4bit
   params:
-    lora_rank_alpha_pairs: [[64, 64], [128, 128]]
+    lora_rank_alpha_pairs: [[128, 128]]
     num_train_epochs: [1]
     train_on_responses_only: [True]
   chat_template: "qwen-2.5"

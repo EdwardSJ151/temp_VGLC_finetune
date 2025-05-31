@@ -5,20 +5,15 @@ wandb_settings:
 dataset_config:
   hf_path: "EdwardSJ151/kid_icarus_small"
   splits_to_run:
-    - str_horizontal_newline_path
     - str_horizontal_newline_nopath
-    - str_vertical_newline_path
-    - str_vertical_newline_nopath
 
 
 qwen3:
   models:
-    - unsloth/Qwen3-14B-bnb-4bit
     - unsloth/Qwen3-8B-bnb-4bit
-    - unsloth/Qwen3-4B-bnb-4bit
   params:
-    lora_rank_alpha_pairs: [[64, 64], [64, 128], [128, 128]]
-    num_train_epochs: [1, 2]
+    lora_rank_alpha_pairs: [[128, 128]]
+    num_train_epochs: [2]
     train_on_responses_only: [True]
   chat_template: "qwen-3"
   instruction_part: "<|im_start|>user\n"
