@@ -6,7 +6,6 @@ CONFIG_FILES_KID_ICARUS=(
     "kid_icarus/grid_search.qwen2.5.yaml"
     "kid_icarus/grid_search_qwen3.yaml"
     "kid_icarus/grid_search_llama.yaml"
-    "kid_icarus/grid_search_gemma.yaml"
 )
 
 ALL_CONFIG_FILES=("${CONFIG_FILES_KID_ICARUS[@]}")

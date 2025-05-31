@@ -3,6 +3,7 @@ import gc
 import traceback
 import os
 import time
+import traceback
 import json
 import yaml
 import argparse
@@ -184,9 +185,9 @@ for current_split in splits_to_run:
                                 trainer.train()
                                 print(f"Training finished for run: {run_name}")
 
-                                # model.save_pretrained(save_model_name)
-                                # tokenizer.save_pretrained(save_model_name)
-                                # print(f"Model saved to {save_model_name}")
+                                model.save_pretrained(save_model_name)
+                                tokenizer.save_pretrained(save_model_name)
+                                print(f"Model saved to {save_model_name}")
                                 success = True
 
                                 run_data = {
@@ -211,6 +212,14 @@ for current_split in splits_to_run:
                                 print("Starting Inference")
                                 game_type, orientation = determine_game_and_orientation(save_model_name)
                                 if game_type:
+                                    if game_type == "loderunner":
+                                        TEMPERATURES = [1.0]
+                                        NUM_OF_SAMPLES = 100
+
+                                    else:
+                                        TEMPERATURES = [1.5, 1.7]
+                                        NUM_OF_SAMPLES = 50
+
                                     os.makedirs("inference_results", exist_ok=True)
                                     output_pdf = f"inference_results/level_generation_results_{game_type}_{orientation}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
                                     json_output = f"inference_results/level_generation_results_{game_type}_{orientation}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
@@ -331,6 +340,7 @@ for current_split in splits_to_run:
                                             pdf.savefig()
                                             plt.close()
                                             print(f"Error with model {save_model_name}: {str(e)}")
+                                            traceback.print_exc()
 
                                     with open(json_output, 'w') as f:
                                         json.dump(results_data, f, indent=2)

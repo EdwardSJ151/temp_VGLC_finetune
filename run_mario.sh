@@ -6,7 +6,6 @@ CONFIG_FILES_MARIO=(
     "mario/grid_search.qwen2.5.yaml"
     "mario/grid_search_qwen3.yaml"
     "mario/grid_search_llama.yaml"
-    "mario/grid_search_gemma.yaml"
 )
 
 ALL_CONFIG_FILES=("${CONFIG_FILES_MARIO[@]}")

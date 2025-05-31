@@ -6,7 +6,6 @@ CONFIG_FILES_RAINBOW_ISLAND=(
     "rainbow_island/grid_search.qwen2.5.yaml"
     "rainbow_island/grid_search_qwen3.yaml"
     "rainbow_island/grid_search_llama.yaml"
-    "rainbow_island/grid_search_gemma.yaml"
 )
 
 ALL_CONFIG_FILES=("${CONFIG_FILES_RAINBOW_ISLAND[@]}")
