@@ -12,8 +12,8 @@ gemma3:
   models:
     - unsloth/gemma-3-12b-it-bnb-4bit
   params:
-    lora_rank_alpha_pairs: [[64, 64], [128, 128], [128, 256]]
-    num_train_epochs: [3, 5, 10]
+    lora_rank_alpha_pairs: [[128, 128], [128, 256]]
+    num_train_epochs: [10]
     train_on_responses_only: [True]
   chat_template: "gemma-3"
   instruction_part: "<start_of_turn>user\n"

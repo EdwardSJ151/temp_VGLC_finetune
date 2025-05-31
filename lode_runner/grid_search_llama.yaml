@@ -6,15 +6,14 @@ dataset_config:
   hf_path: "EdwardSJ151/lode_runner"
   splits_to_run:
     - str_horizontal_newline
-    - str_vertical_newline
 
 
 llama3:
   models:
     - unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit
   params:
-    lora_rank_alpha_pairs: [[64, 64], [128, 128], [128, 256]]
-    num_train_epochs: [3, 5, 10]
+    lora_rank_alpha_pairs: [[128, 128]]
+    num_train_epochs: [10]
     train_on_responses_only: [True]
   chat_template: "llama-3.1"
   instruction_part: "<|start_header_id|>user<|end_header_id|>\n\n"
